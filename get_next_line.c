@@ -6,7 +6,7 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/20 13:47:07 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2023/12/20 14:03:28 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ char	*ft_crop_new_stash(char *stash)
 	char	*newstash;
 	int		i;
 	int		e;
-	int		sizestash;
 
-	sizestash = ft_strlen(stash);
 	e = 0;
 	i = 0;
-	while (stash[i] != '\n' && i != sizestash)
+	while (stash[i] != '\n' && stash[i])
 		i++;
 	if (stash[i] == '\n')
 		i++;
-	while (stash[i] && i != sizestash)
+	while (stash[i])
 	{
 		e++;
 		i++;
 	}
 	newstash = malloc(sizeof(char) * (e + 1));
+	if (newstash == NULL)
+		return (NULL);
 	i -= e;
 	e = 0;
 	while (stash[i])
