@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
+/*   By: imehdid <imehdid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/20 14:03:28 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2023/12/21 17:58:42 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,22 +116,21 @@ char	*get_next_line(int fd)
 {
 	char		*theline;
 	static char	*stash;
-	int			endfile;
+	static int	endfile;
 
-	endfile = 0;
 	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, &theline, 0) < 0)
 		return (NULL);
 	theline = NULL;
 	if (stash)
 		stash = ft_crop_new_stash(stash);
 	stash = ft_read_file(fd, stash, &endfile);
-	if (!stash)
+	if (!stash || ft_strlen(stash) == 0)
 	{
 		free (stash);
 		return (NULL);
 	}
 	theline = ft_crop_to_get_line(stash);
-	if (!*theline)
+	if (!theline || ft_strlen(theline) == 0)
 	{
 		free(theline);
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
+/*   By: imehdid <imehdid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:19:40 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/20 13:47:15 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2023/12/21 16:42:23 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_strcpy(char *buffer)
 	int		i;
 
 	i = 0;
-	if (!buffer)
+	if (!buffer || ft_strlen(buffer) == 0)
 		return (NULL);
 	copy = malloc(ft_strlen(buffer) + 1);
 	if (copy == NULL)
