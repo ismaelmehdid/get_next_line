@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <imehdid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/21 17:58:42 by imehdid          ###   ########.fr       */
+/*   Updated: 2023/12/22 19:05:45 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_crop_new_stash(char *stash)
 	while (stash[i])
 		newstash[e++] = stash[i++];
 	newstash[e] = '\0';
-	free(stash);
+	free (stash);
 	return (newstash);
 }
 
@@ -102,7 +102,7 @@ char	*ft_read_file(int fd, char *stash, int *endfile)
 		if (bytesread < BUFFER_SIZE)
 			*endfile = 1;
 		buffer[bytesread] = '\0';
-		if (nbcall == 0)
+		if (nbcall == 0 || !stash)
 			stash = ft_strcpy(buffer);
 		else
 			stash = ft_strjoin(stash, buffer);
@@ -126,7 +126,7 @@ char	*get_next_line(int fd)
 	stash = ft_read_file(fd, stash, &endfile);
 	if (!stash || ft_strlen(stash) == 0)
 	{
-		free (stash);
+		stash = ft_freestash(stash);
 		return (NULL);
 	}
 	theline = ft_crop_to_get_line(stash);
@@ -135,5 +135,7 @@ char	*get_next_line(int fd)
 		free(theline);
 		return (NULL);
 	}
+	if (ft_compare(theline, stash) == 1)
+		stash = ft_freestash(stash);
 	return (theline);
 }

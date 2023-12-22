@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <imehdid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:29 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/21 16:32:32 by imehdid          ###   ########.fr       */
+/*   Updated: 2023/12/22 17:51:35 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@ char	*ft_strcpy(char *buffer);
 char	*ft_strjoin(char *s1, char *s2);
 
 int		ft_strlen(char *stash);
+
+int		ft_compare(char	*s1, char *s2);
+
+char	*ft_freestash(char *stash);
 
 #endif

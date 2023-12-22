@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <imehdid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:19:40 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/21 16:42:23 by imehdid          ###   ########.fr       */
+/*   Updated: 2023/12/22 19:06:23 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,31 @@ char	*ft_strcpy(char *buffer)
 	}
 	copy[i] = '\0';
 	return (copy);
+}
+
+int	ft_compare(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	if (!s1 || !s2)
+		return (0);
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+char	*ft_freestash(char *stash)
+{
+	if (!stash)
+		return (NULL);
+	free (stash);
+	stash = NULL;
+	return (stash);
 }
