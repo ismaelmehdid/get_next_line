@@ -6,7 +6,7 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/22 19:05:45 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2023/12/29 15:53:28 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	ft_is_stash_ready(char *stash, int bytes)
 char	*ft_read_file(int fd, char *stash, int *endfile)
 {
 	char		*buffer;
-	static int	nbcall;
 	int			bytesread;
 
 	while ((!ft_is_stash_ready(stash, BUFFER_SIZE)) && *endfile == 0)
@@ -99,14 +98,18 @@ char	*ft_read_file(int fd, char *stash, int *endfile)
 		if (buffer == NULL)
 			return (NULL);
 		bytesread = read(fd, buffer, BUFFER_SIZE);
+		if (bytesread < 0)
+		{
+			free (buffer);
+			return (NULL);
+		}
 		if (bytesread < BUFFER_SIZE)
 			*endfile = 1;
 		buffer[bytesread] = '\0';
-		if (nbcall == 0 || !stash)
+		if (!stash)
 			stash = ft_strcpy(buffer);
 		else
 			stash = ft_strjoin(stash, buffer);
-		nbcall++;
 		free(buffer);
 	}
 	return (stash);
@@ -118,7 +121,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	static int	endfile;
 
-	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, &theline, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE == 0)
 		return (NULL);
 	theline = NULL;
 	if (stash)
