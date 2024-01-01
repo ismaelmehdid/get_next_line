@@ -6,7 +6,7 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/29 15:53:28 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2024/01/01 17:36:21 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char	*ft_crop_new_stash(char *stash)
 		i++;
 	if (stash[i] == '\n')
 		i++;
-	while (stash[i])
-	{
-		e++;
-		i++;
-	}
+	e = ft_strlen(stash) - i;
+	i = ft_strlen(stash);
 	newstash = malloc(sizeof(char) * (e + 1));
 	if (newstash == NULL)
+	{
+		free (stash);
 		return (NULL);
+	}
 	i -= e;
 	e = 0;
 	while (stash[i])
@@ -121,7 +121,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	static int	endfile;
 
-	if (fd < 0 || BUFFER_SIZE == 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	theline = NULL;
 	if (stash)

@@ -6,7 +6,7 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:19:40 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2023/12/22 19:06:23 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2024/01/01 17:15:55 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	e = 0;
 	array = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (array == NULL)
+	{
+		free (s1);
 		return (NULL);
+	}
 	while (s1[i])
 		array[e++] = s1[i++];
 	i = 0;
 	while (s2[i])
-	{
-		array[e] = s2[i];
-		i++;
-		e++;
-	}
+		array[e++] = s2[i++];
 	array[e] = '\0';
 	free(s1);
 	return (array);
