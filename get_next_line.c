@@ -6,7 +6,7 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:41:00 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2024/01/01 17:36:21 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2024/02/04 16:05:27 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_crop_new_stash(char *stash)
 		i++;
 	if (stash[i] == '\n')
 		i++;
-	e = ft_strlen(stash) - i;
-	i = ft_strlen(stash);
+	e = ft_strlen_c(stash) - i;
+	i = ft_strlen_c(stash);
 	newstash = malloc(sizeof(char) * (e + 1));
 	if (newstash == NULL)
 	{
@@ -72,7 +72,7 @@ int	ft_is_stash_ready(char *stash, int bytes)
 	int	i;
 	int	e;
 
-	e = ft_strlen(stash);
+	e = ft_strlen_c(stash);
 	i = 0;
 	if (!stash)
 		return (0);
@@ -109,7 +109,7 @@ char	*ft_read_file(int fd, char *stash, int *endfile)
 		if (!stash)
 			stash = ft_strcpy(buffer);
 		else
-			stash = ft_strjoin(stash, buffer);
+			stash = ft_strjoin_c(stash, buffer);
 		free(buffer);
 	}
 	return (stash);
@@ -127,13 +127,13 @@ char	*get_next_line(int fd)
 	if (stash)
 		stash = ft_crop_new_stash(stash);
 	stash = ft_read_file(fd, stash, &endfile);
-	if (!stash || ft_strlen(stash) == 0)
+	if (!stash || ft_strlen_c(stash) == 0)
 	{
 		stash = ft_freestash(stash);
 		return (NULL);
 	}
 	theline = ft_crop_to_get_line(stash);
-	if (!theline || ft_strlen(theline) == 0)
+	if (!theline || ft_strlen_c(theline) == 0)
 	{
 		free(theline);
 		return (NULL);

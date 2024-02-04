@@ -6,13 +6,13 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:19:40 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2024/01/01 17:15:55 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2024/02/04 16:05:39 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *stash)
+int	ft_strlen_c(char *stash)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *stash)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_c(char *s1, char *s2)
 {
 	int		i;
 	char	*array;
@@ -34,7 +34,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	i = 0;
 	e = 0;
-	array = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	array = malloc(sizeof(char) * (ft_strlen_c(s1) + ft_strlen_c(s2)) + 1);
 	if (array == NULL)
 	{
 		free (s1);
@@ -56,9 +56,9 @@ char	*ft_strcpy(char *buffer)
 	int		i;
 
 	i = 0;
-	if (!buffer || ft_strlen(buffer) == 0)
+	if (!buffer || ft_strlen_c(buffer) == 0)
 		return (NULL);
-	copy = malloc(ft_strlen(buffer) + 1);
+	copy = malloc(ft_strlen_c(buffer) + 1);
 	if (copy == NULL)
 		return (NULL);
 	while (buffer[i])
@@ -77,7 +77,7 @@ int	ft_compare(char *s1, char *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	if (ft_strlen(s1) != ft_strlen(s2))
+	if (ft_strlen_c(s1) != ft_strlen_c(s2))
 		return (0);
 	while (s1[i] && s2[i])
 	{
